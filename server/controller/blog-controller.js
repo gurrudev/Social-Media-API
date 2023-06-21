@@ -105,7 +105,7 @@ class BlogsController {
 
         try {
             blog = await Blogs.findByIdAndRemove(id).populate('user')
-            await blog.user.blog.pull(blog)
+            await blog.user.blogs.pull(blog)
             await blog.user.save()
         } catch (err) {
             console.log(err);
@@ -116,6 +116,24 @@ class BlogsController {
         }
 
         return res.status(200).json({ message: 'Deleted Successfully' })
+    }
+
+    static getByUserId = async (req, res, next) => {
+        const userId = await req.params.id;
+        let userBlog;
+        
+        try {
+            userBlog = await User.findById(userId).populate('blogs');
+
+        } catch (err) {
+            console.log(err);
+        }
+
+        if(!userBlog){
+            return res.status(404).json({ message: 'No blogs Found' });
+        }
+
+        return res.status(200).json({ blogs: userBlog})   
     }
 
 }
