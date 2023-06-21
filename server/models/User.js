@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import Blogs from "./Blog";
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -15,7 +16,9 @@ const userSchema = new Schema({
         type: String,
         required : true,
         minlength: 6,
-    }
+    },
+    blogs:[{type: mongoose.Types.ObjectId, ref:"Blog", required: true}]
+    
 })
 
 const User = mongoose.model('User', userSchema);
