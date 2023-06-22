@@ -1,7 +1,7 @@
 # social-media-api
 
 ```sh
-$ c
+$ 
 
 📦Install
 
