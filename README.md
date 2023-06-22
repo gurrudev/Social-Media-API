@@ -1,6 +1,6 @@
 # social-media-api
 
-```s
+```
 
 📦Install
 
