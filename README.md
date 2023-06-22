@@ -1,8 +1,7 @@
 # social-media-api
 
 ```sh
-$ cd ser
-
+$ cd 
 
 📦Install
 
