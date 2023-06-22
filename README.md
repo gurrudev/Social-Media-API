@@ -30,3 +30,5 @@ const dbConnect = () =>{
 ```sh
 $ npm start
 ```
+
+<!-- Main folder = "server" -->
