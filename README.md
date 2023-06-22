@@ -8,7 +8,7 @@ $ npm install
         
 💻Usage
 
-Replace MongoDB connection string in /config/dbConfig.js
+Replace MongoDB connection string in config/dbConfig.js
 ```js
 const dbConnect = () =>{
     try {
