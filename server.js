@@ -1,7 +1,7 @@
 import express from 'express'
-import dbConnect from './server/config/dbConfig.js'
-import router from './server/router/user-routes.js'
-import blog_router from './server/router/blog-routes.js'
+import dbConnect from './config/dbConfig.js'
+import router from './router/user-routes.js'
+import blog_router from './router/blog-routes.js'
 
 const app = express()
 
