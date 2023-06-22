@@ -32,7 +32,7 @@ class BlogsController {
         }
 
         if(!existingUser){
-            return res.status(501).send('Invalid ID')
+            return res.status(501).send('Invalid User ID')
         }
 
         const blogs_data = new Blogs({
@@ -60,13 +60,14 @@ class BlogsController {
 
     static updateBlogs = async (req, res, next) => {
         const blogId = req.params.id;
-        const { title, description } = req.body
+        const { title, description, image, } = req.body
         let blog;
 
         try {
             blog = await Blogs.findById(blogId, {
                 title,
                 description,
+                image,
             })
         } catch (err) {
             return console.log(err)

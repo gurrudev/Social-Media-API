@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-// import Blogs from "./Blog";
+import Blogs from "./Blog";
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -17,7 +17,7 @@ const userSchema = new Schema({
         required : true,
         minlength: 6,
     },
-    blogs:[{type: mongoose.Types.ObjectId, ref:"Blog", required: true}]
+    blogs:[{type: mongoose.Types.ObjectId, ref:'Blog', required: true}]
     
 })
 
