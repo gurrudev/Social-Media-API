@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Blogs from "./Blog";
+// import Blogs from "./Blog";
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
