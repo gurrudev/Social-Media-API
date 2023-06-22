@@ -1,5 +1,5 @@
 {
-  "name": "Social-media-api",
+  "name": "social-media-api",
   "version": "1.0.0",
   "description": "Blog website api",
   "main": "server.js",
