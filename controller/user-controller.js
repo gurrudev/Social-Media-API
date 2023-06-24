@@ -31,7 +31,7 @@ class UserCotroller {
         }
 
         if (existingUser) {
-            return res.status(200).json({ message: 'User already exists!, Login insted' })
+            return res.status(201).json({ message: 'User already exists!, Login insted' })
         }
 
         const hashedPassword = bcrypt.hashSync(password)
@@ -49,7 +49,7 @@ class UserCotroller {
         } catch (err) {
             console.log(err);
         }
-        return res.status(201).json({ user })
+        return res.status(200).json({ user })
     }
 
     static logIn = async(req, res, next) =>{

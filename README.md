@@ -1,9 +1,5 @@
 # social-media-api
 
-```sh
-$ cd server
-```
-
 📦Install
 
 ```sh
@@ -12,7 +8,7 @@ $ npm install
         
 💻Usage
 
-Replace MongoDB connection string in server/config/dbConfig.js
+Replace MongoDB connection string in config/dbConfig.js
 ```js
 const dbConnect = () =>{
     try {
@@ -30,3 +26,5 @@ const dbConnect = () =>{
 ```sh
 $ npm start
 ```
+
+<!-- Main folder = "server" -->
