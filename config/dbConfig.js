@@ -4,11 +4,8 @@ dotenv.config();
 
 const dbConnect = () =>{
     try {
-        mongoose.set('strictQuery', false);
-        mongoose.connect(`mongodb+srv://${process.env.MONGO_CRED}@cluster0.8wdm4gd.mongodb.net/BLOG-API`,{
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        }).then(()=>{
+        
+        mongoose.connect(`mongodb+srv://${process.env.MONGO_CRED}@cluster0.8wdm4gd.mongodb.net/BLOG-API`).then(()=>{
             console.log('DB Connected :)')
         }).catch((e)=>{
             console.log(e)
