@@ -64,7 +64,7 @@ class BlogsController {
         let blog;
 
         try {
-            blog = await Blogs.findById(blogId, {
+            blog = await Blogs.findByIdAndUpdate(blogId, {
                 title,
                 description,
             })
