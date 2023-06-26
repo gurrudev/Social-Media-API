@@ -128,84 +128,102 @@ paths:
           description: ok
          500:
           description: Unable to update the Blog
+  
+  /api/blogs/:
+    delete:
+      tags:
+          - Delete Blog
+      parameters:
+        - name: id
+          in:  query
+          description: Enter Blog Id
+          required: true
+          schema:
+            type: string
 
-components:
-  schemas:
-    Statement Request:
-      type: object
-      properties:
-        ledger_filter:
-          type: string
-          description: |
-            **The below table defines the reports Ids for particular report.**
-            | Report Name                     | Report Type                      | Report ID                          |
-            | ------------------------------- | ---------------------------------| -----------------------------------|
-            | LedgerDetail                    | Combined Ledger                  | 63d8ee4a6020ade1141a42a3           |
-            | LedgerDetail                    | Funds Transaction Report         | 63d8ee4a6020ade1141a42a4           |
-            | LedgerDetail                    | Commodity Ledger                 | 63d8ee4a6020ade1141a42a5           |
-            | LedgerDetail                    | Equity Ledger                    | 63d8ee4a6020ade1141a42a6           |
-            | LedgerDetail                    | FNO Ledger                       | 63d8ee4a6020ade1141a42a7           |
-            | LedgerDetail                    | Currency Ledger                  | 63d8ee4a6020ade1141a42a8           |
-            | InvestorReport                  | FNO P&L Statement                | 63d8ee4a6020ade1141a42a9           |
-            | InvestorReport                  | Equity P&L Statement             | 63d8ee4a6020ade1141a42aa           |
-            | InvestorReport                  | CD P&L Statement                 | 63d8ee4a6020ade1141a42ab           |
-            | InvestorReport                  | Commodity P&L Statement          | 63d8ee4a6020ade1141a42ac           |
-            | TradeListing                    | Trade Report Details -Datewise   | 63d8ee4a6020ade1141a42ad           |
-            | TradeListing                    | Trade Report Details -Scripwise  | 63d8ee4a6020ade1141a42ae           |
-            | Dividend                        | Dividend                         | 63f468b2dd61ffe918c91db4           |
-            | DP_Holding                      | DP_Holding                       | 63f470b4dd61ffe918c91db9           | 
-            | Dp_Transaction                  | Dp_Transaction                   | 63f5a7078cf06f13691f4dd2           |
-            | LT-ST Report                    | LT-ST Report                     | 642284182d9e75745c777b6b           |
-            | All Segment P&L                 | All Segment P&L                  | 6435471cf6458c13ec0f7a66           |
+      responses:
+         200:
+          description: ok
+         500:
+          description: Unable to delete the Blog
 
-        client_code:
-          type: string
-          example: "GE0001"
-        sent_format_type:
-          type: string
-          example: "pdf/xlsx"
-        send_request_type:
-          type: string
-          example: "download/mail"
-        from_date:
-          type: string
-          example: "19981128"
-        to_date:
-          type: string
-          example: "19981128"
-        exchange_segment:
-          type: string
-          example: "Pass it a empty string value except (TradeListing)"
-      xml:
-        name: order
-  requestBodies:
-    Pet:
-      description: Pet object that needs to be added to the store
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/Pet"
-        application/xml:
-          schema:
-            $ref: "#/components/schemas/Pet"
-    UserArray:
-      description: List of user object
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: "#/components/schemas/User"
-  securitySchemes:
-    petstore_auth:
-      type: oauth2
-      flows:
-        implicit:
-          authorizationUrl: https://petstore3.swagger.io/oauth/authorize
-          scopes:
-            write:pets: modify pets in your account
-            read:pets: read your pets
-    api_key:
-      type: apiKey
-      name: api_key
-      in: header
+# components:
+#   schemas:
+#     Statement Request:
+#       type: object
+#       properties:
+#         ledger_filter:
+#           type: string
+#           description: |
+#             **The below table defines the reports Ids for particular report.**
+#             | Report Name                     | Report Type                      | Report ID                          |
+#             | ------------------------------- | ---------------------------------| -----------------------------------|
+#             | LedgerDetail                    | Combined Ledger                  | 63d8ee4a6020ade1141a42a3           |
+#             | LedgerDetail                    | Funds Transaction Report         | 63d8ee4a6020ade1141a42a4           |
+#             | LedgerDetail                    | Commodity Ledger                 | 63d8ee4a6020ade1141a42a5           |
+#             | LedgerDetail                    | Equity Ledger                    | 63d8ee4a6020ade1141a42a6           |
+#             | LedgerDetail                    | FNO Ledger                       | 63d8ee4a6020ade1141a42a7           |
+#             | LedgerDetail                    | Currency Ledger                  | 63d8ee4a6020ade1141a42a8           |
+#             | InvestorReport                  | FNO P&L Statement                | 63d8ee4a6020ade1141a42a9           |
+#             | InvestorReport                  | Equity P&L Statement             | 63d8ee4a6020ade1141a42aa           |
+#             | InvestorReport                  | CD P&L Statement                 | 63d8ee4a6020ade1141a42ab           |
+#             | InvestorReport                  | Commodity P&L Statement          | 63d8ee4a6020ade1141a42ac           |
+#             | TradeListing                    | Trade Report Details -Datewise   | 63d8ee4a6020ade1141a42ad           |
+#             | TradeListing                    | Trade Report Details -Scripwise  | 63d8ee4a6020ade1141a42ae           |
+#             | Dividend                        | Dividend                         | 63f468b2dd61ffe918c91db4           |
+#             | DP_Holding                      | DP_Holding                       | 63f470b4dd61ffe918c91db9           | 
+#             | Dp_Transaction                  | Dp_Transaction                   | 63f5a7078cf06f13691f4dd2           |
+#             | LT-ST Report                    | LT-ST Report                     | 642284182d9e75745c777b6b           |
+#             | All Segment P&L                 | All Segment P&L                  | 6435471cf6458c13ec0f7a66           |
+
+#         client_code:
+#           type: string
+#           example: "GE0001"
+#         sent_format_type:
+#           type: string
+#           example: "pdf/xlsx"
+#         send_request_type:
+#           type: string
+#           example: "download/mail"
+#         from_date:
+#           type: string
+#           example: "19981128"
+#         to_date:
+#           type: string
+#           example: "19981128"
+#         exchange_segment:
+#           type: string
+#           example: "Pass it a empty string value except (TradeListing)"
+#       xml:
+#         name: order
+#   requestBodies:
+#     Pet:
+#       description: Pet object that needs to be added to the store
+#       content:
+#         application/json:
+#           schema:
+#             $ref: "#/components/schemas/Pet"
+#         application/xml:
+#           schema:
+#             $ref: "#/components/schemas/Pet"
+#     UserArray:
+#       description: List of user object
+#       content:
+#         application/json:
+#           schema:
+#             type: array
+#             items:
+#               $ref: "#/components/schemas/User"
+#   securitySchemes:
+#     petstore_auth:
+#       type: oauth2
+#       flows:
+#         implicit:
+#           authorizationUrl: https://petstore3.swagger.io/oauth/authorize
+#           scopes:
+#             write:pets: modify pets in your account
+#             read:pets: read your pets
+#     api_key:
+#       type: apiKey
+#       name: api_key
+#       in: header
