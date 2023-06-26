@@ -99,7 +99,7 @@ paths:
         "501":
           description: Invalid User ID.
 
-  /api/blogs/update/:id:
+  /api/blogs/update/:
     put:
       tags:
           - Update Blogs
