@@ -11,4 +11,3 @@ blog_router.delete('/:id', BlogsController.deleteBlogById)
 blog_router.get('/user/:id', BlogsController.getByUserId)
 
 export default blog_router
-
