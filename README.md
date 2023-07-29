@@ -1,4 +1,4 @@
-# social-media-api
+# social-media-api (BlobHub API's)
 
 📦Install
 
