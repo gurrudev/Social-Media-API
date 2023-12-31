@@ -12,7 +12,7 @@ Replace MongoDB connection string in config/dbConfig.js
 ```js
 const dbConnect = () =>{
     try {
-        mongoose.connect(process.env.MONGO_CRED).then(()=>{
+        mongoose.connect(`mongodb+srv://${process.env MONGO_CRED}`).then(()=>{
             console.log('DB Connected :)')
         }).catch((e)=>{
             console.log(e)
