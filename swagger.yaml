@@ -99,7 +99,7 @@ paths:
         "501":
           description: Invalid User ID.
 
-  /api/blogs/update/:
+  /api/blogs/update/{id}:
     put:
       tags:
           - Update Blogs
@@ -129,7 +129,7 @@ paths:
          500:
           description: Unable to update the Blog
   
-  /api/blogs/:
+  /api/blogs/{id}:
     delete:
       tags:
           - Delete Blog

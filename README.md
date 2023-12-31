@@ -12,7 +12,7 @@ Replace MongoDB connection string in config/dbConfig.js
 ```js
 const dbConnect = () =>{
     try {
-        mongoose.connect(`mongodb+srv://${process.env.MONGO_CRED}@cluster0.8wdm4gd.mongodb.net/BLOG-API`).then(()=>{
+        mongoose.connect(process.env.MONGO_CRED).then(()=>{
             console.log('DB Connected :)')
         }).catch((e)=>{
             console.log(e)
@@ -22,9 +22,9 @@ const dbConnect = () =>{
     }
 }
 ```
+
 🚀Start 
 ```sh
 $ npm start
 ```
 
-<!-- Main folder = "server" -->
