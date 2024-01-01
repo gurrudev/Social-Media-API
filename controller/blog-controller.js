@@ -21,7 +21,7 @@ class BlogsController {
     }
 
     static addBlogs = async (req, res, next) => {
-        const { title, description, image, user } = req.body;
+        const { title, description, image_url, blog_tags, user} = req.body;
 
         let existingUser;
 
@@ -38,7 +38,8 @@ class BlogsController {
         const blogs_data = new Blogs({
             title,
             description,
-            image,
+            image_url,
+            blog_tags, 
             user,
         })
 
@@ -60,14 +61,16 @@ class BlogsController {
 
     static updateBlogs = async (req, res, next) => {
         const blogId = req.params.id;
-        const { title, description, image, } = req.body
+        const { title, description, image_url, blog_tags} = req.body
         let blog;
 
         try {
             blog = await Blogs.findByIdAndUpdate(blogId, {
                 title,
                 description,
-                image,
+                image_url,
+                blog_tags,
+                updatedAt : new Date().toISOString()
             })
         } catch (err) {
             return console.log(err)
@@ -77,7 +80,7 @@ class BlogsController {
             return res.status(500).json({ massage: 'Unable to update the Blog' })
         }
 
-        return res.status(200).json({ blog })
+        return res.status(200).json({ massage: 'Blog has been updated!' })
 
     }
 
