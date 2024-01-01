@@ -22,21 +22,21 @@ const blogSchema = new Schema({
         type: [String],
     },
 
+    createdAt:{
+        type : Date,
+        default : Date.now(),
+    },
+    
+    updatedAt:{
+        type : Date
+    },
+    
     user: {
         type: mongoose.Types.ObjectId,
         ref:'User',
         required: true
     },
-
-    createdAt:{
-        type : Date,
-        default : Date.now(),
-    },
-
-    updatedAt:{
-        type : Date
-    }
-
+    
 })
 
 const Blogs = mongoose.model('Blog',blogSchema);

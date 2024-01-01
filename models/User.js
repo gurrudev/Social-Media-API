@@ -29,8 +29,8 @@ const userSchema = new Schema({
         type: String,
     },
     location: {
-        city: { type: String },
-        country: { type: String },
+        type: String,
+    
     },
     skills: {
         type: [String],
