@@ -13,15 +13,30 @@ const blogSchema = new Schema({
         required: true
     },
 
-    image: {
+    image_url: {
         type: String,
         required: true
     },
+
+    blog_tags: {
+        type: [String],
+    },
+
     user: {
         type: mongoose.Types.ObjectId,
         ref:'User',
         required: true
+    },
+
+    createdAt:{
+        type : Date,
+        default : Date.now(),
+    },
+
+    updatedAt:{
+        type : Date
     }
+
 })
 
 const Blogs = mongoose.model('Blog',blogSchema);
