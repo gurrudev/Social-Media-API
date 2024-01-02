@@ -35,11 +35,11 @@ class UserCotroller {
         }
 
         const hashedPassword = bcrypt.hashSync(password)
-        
+
         const user = new User({
             name,
             email,
-            password : hashedPassword,
+            password: hashedPassword,
             blogs: []
         });
 
@@ -51,33 +51,36 @@ class UserCotroller {
         return res.status(200).json({ user })
     }
 
-    static logIn = async(req, res, next) =>{
-        const {email, password} = req.body;
+    static logIn = async (req, res, next) => {
+        const { email, password } = req.body;
 
         let existingUser;
-        
+
         try {
-            existingUser = await User.findOne({email})
+            existingUser = await User.findOne({ email })
         } catch (err) {
             return console.log(err)
         }
 
-        if(!existingUser){
-            return res.status(404).json({message: 'User not found'})
+        if (!existingUser) {
+            return res.status(404).json({ message: 'User not found' })
         }
 
         const isPasswordCorrect = bcrypt.compareSync(password, existingUser.password)
 
-        if(!isPasswordCorrect){
-            return res.status(400).json({message: 'Invalid password'})
+        if (!isPasswordCorrect) {
+            return res.status(400).json({ message: 'Invalid password' })
         }
 
-        return res.status(200).json(existingUser)
+        const userToSend = { ...existingUser._doc };
+        delete userToSend.password;
+
+        return res.status(200).json(userToSend)
     }
 
-    static updateUser = async(req, res, next)=>{
+    static updateUser = async (req, res, next) => {
         const userId = req.params.id;
-        const {name, email, password, profile_pic, user_title, bio, location, skills} = req.body
+        const { name, email, password, profile_pic, user_title, bio, location, skills } = req.body
 
         let user;
         const hashedPassword = bcrypt.hashSync(password)
@@ -86,24 +89,24 @@ class UserCotroller {
             user = await User.findByIdAndUpdate(userId, {
                 name,
                 email,
-                password : hashedPassword,
+                password: hashedPassword,
                 profile_pic,
                 user_title,
                 bio,
                 location,
                 skills,
-                blogs:[],
+                blogs: [],
                 updatedAt: new Date().toISOString(),
             })
         } catch (error) {
             return console.log(error)
         }
 
-        if(!user){
-            return res.status(404).json({ message: "No user with this id."});
+        if (!user) {
+            return res.status(404).json({ message: "No user with this id." });
         }
 
-        return res.status(200).json({message: 'user details has been updated!'})
+        return res.status(200).json({ message: 'user details has been updated!' })
     }
 }
 
