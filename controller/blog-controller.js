@@ -13,7 +13,7 @@ class BlogsController {
         }
 
         if (!blogs_data) {
-            return res.status(404).json({ message: 'No Blogs found' })
+            return res.status(401).json({ message: 'No Blogs found' })
         }
 
         return res.status(200).json({ blogs_data })
@@ -96,7 +96,7 @@ class BlogsController {
         }
 
         if (!blog) {
-            return res.status(404).json({ message: 'No Blog Found' })
+            return res.status(401).json({ message: 'No Blog Found' })
         }
 
         return res.status(200).json({ blog })
@@ -134,7 +134,7 @@ class BlogsController {
         }
 
         if(!userBlog){
-            return res.status(404).json({ message: 'No blogs Found' });
+            return res.status(401).json({ message: 'No blogs Found' });
         }
 
         return res.status(200).json({ blogs: userBlog})   
