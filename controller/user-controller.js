@@ -72,7 +72,7 @@ class UserCotroller {
             return res.status(400).json({message: 'Invalid password'})
         }
 
-        return res.status(200).json({message:'Login successful'})
+        return res.status(200).json(existingUser)
     }
 
     static updateUser = async(req, res, next)=>{
