@@ -2,7 +2,6 @@ import bcrypt from "bcryptjs";
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
 
-
 class UserCotroller {
   static getAllUser = async (req, res, next) => {
     let users;
@@ -81,7 +80,7 @@ class UserCotroller {
       expiresIn: "1h",
     });
 
-    return res.status(200).json({ message: 'login Successfull!', token });
+    return res.status(200).json({ massage: 'login successfull!', token });
   };
 
   static updateUser = async (req, res, next) => {
@@ -126,33 +125,31 @@ class UserCotroller {
 
   static getUserData = async (req, res, next) => {
     const token = req.headers.authorization;
-  
+
     if (!token) {
       return res.status(401).json({ message: "No token provided" });
     }
-  
+
     try {
-      const decodedToken = jwt.verify(token.split(' ')[1], "your_secret_key");
-  
+      const decodedToken = jwt.verify(token.split(" ")[1], "your_secret_key");
+
       const userId = decodedToken.userId;
-  
+
       const user = await User.findById(userId);
-  
+
       if (!user) {
         return res.status(404).json({ message: "User not found" });
       }
-  
+
       const userDataToSend = { ...user._doc };
       delete userDataToSend.password;
-  
+
       return res.status(200).json({ user: userDataToSend });
     } catch (error) {
       console.error(error); // Log the error for debugging
       return res.status(401).json({ message: "Invalid token" });
     }
   };
-  
-  
 }
 
 export default UserCotroller;
