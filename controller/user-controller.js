@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import User from "../models/User.js";
-import { Jwt } from "jsonwebtoken";
+import { jwt } from "jsonwebtoken";
 
 class UserCotroller {
   static getAllUser = async (req, res, next) => {
