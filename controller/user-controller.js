@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import User from "../models/User.js";
-import { jwt } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
+
 
 class UserCotroller {
   static getAllUser = async (req, res, next) => {
@@ -83,6 +84,7 @@ class UserCotroller {
       expiresIn: "1h",
     });
 
+    // const token = 
     return res.status(200).json({ user: userToSend, token });
   };
 
