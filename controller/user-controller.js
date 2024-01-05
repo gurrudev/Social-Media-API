@@ -97,13 +97,19 @@ class UserCotroller {
     } = req.body;
 
     let user;
-    const hashedPassword = bcrypt.hashSync(password);
+    
+    let passwordString;
+    
+    if(password){
+      const hashedPassword = bcrypt.hashSync(password);
+      passwordString = `password : ${hashedPassword},`;
+    }
 
     try {
       user = await User.findByIdAndUpdate(userId, {
         name,
         email,
-        password: hashedPassword,
+        passwordString,
         profile_pic,
         user_title,
         bio,
