@@ -20,6 +20,7 @@ const blogSchema = new Schema({
 
     blog_tags: {
         type: [String],
+        required: true
     },
 
     createdAt:{
