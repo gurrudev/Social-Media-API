@@ -21,7 +21,7 @@ class BlogsController {
     }
 
     static addBlogs = async (req, res, next) => {
-        const { title, description, image_url, blog_tags, user} = req.body;
+        const { title, description, image_url, blog_tags, user, username} = req.body;
 
         let existingUser;
 
@@ -41,6 +41,7 @@ class BlogsController {
             image_url,
             blog_tags, 
             user,
+            username
         })
 
         try {
