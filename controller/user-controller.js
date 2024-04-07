@@ -77,7 +77,7 @@ class UserCotroller {
 
     // Generate a token
     const token = jwt.sign({ userId: existingUser._id }, "your_secret_key", {
-      expiresIn: "1h",
+      expiresIn: "4h",
     });
 
     return res.status(200).json({ massage: 'login successfull!', token });
