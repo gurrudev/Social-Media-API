@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: social-media-api
+  title: BLOGHUB API
   version: 1.0.0
   description: This repository of API is related to a blog website, where user can signup and login with encrypted credentials. This API provides ability to create, read, update or delete the blog.
 
