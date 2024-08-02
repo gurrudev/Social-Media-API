@@ -12,13 +12,13 @@ app.use(cors());
 
 const swaggerDocument = YAML.load("./swagger.yaml");
 
-app.use("/", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
+app.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 app.use("/api/users", router);
 app.use("/api/blogs", blog_router);
 
 app.use("*",(req, res)=>{
-    res.status(404).send({message: 'Not Found'})
+  res.status(404).send({message: 'Not Found'})
 })
 
 const PORT = 3001;
