@@ -7,5 +7,6 @@ router.get('/', UserCotroller.getAllUser)
 router.post('/signup',UserCotroller.signUp)
 router.post('/login',UserCotroller.logIn)
 router.put('/update/:id', UserCotroller.updateUser)
+router.get('/user-data', UserCotroller.getUserData)
 
 export default router;

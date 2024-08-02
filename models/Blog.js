@@ -20,6 +20,7 @@ const blogSchema = new Schema({
 
     blog_tags: {
         type: [String],
+        required: true
     },
 
     createdAt:{
@@ -36,6 +37,11 @@ const blogSchema = new Schema({
         ref:'User',
         required: true
     },
+
+    username:{
+        type: String,
+        required:true,
+    }
     
 })
 

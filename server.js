@@ -21,7 +21,7 @@ app.use("*",(req, res)=>{
     res.status(404).send({message: 'Not Found'})
 })
 
-const PORT = 3000;
+const PORT = 3001;
 app.listen(process.env.PORT || PORT, () => {
   console.log(`🚀 Server is running on ${process.env.PORT || PORT}`);
   dbConnect();

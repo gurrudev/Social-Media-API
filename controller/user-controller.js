@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import User from "../models/User.js";
-import { Jwt } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 class UserCotroller {
   static getAllUser = async (req, res, next) => {
@@ -75,15 +75,12 @@ class UserCotroller {
       return res.status(401).json({ message: "Invalid password" });
     }
 
-    const userToSend = { ...existingUser._doc };
-    delete userToSend.password;
-
     // Generate a token
     const token = jwt.sign({ userId: existingUser._id }, "your_secret_key", {
-      expiresIn: "1h",
+      expiresIn: "4h",
     });
 
-    return res.status(200).json({ user: userToSend, token });
+    return res.status(200).json({ massage: 'login successfull!', token });
   };
 
   static updateUser = async (req, res, next) => {
@@ -100,13 +97,19 @@ class UserCotroller {
     } = req.body;
 
     let user;
-    const hashedPassword = bcrypt.hashSync(password);
+    
+    let passwordString;
+    
+    if(password){
+      const hashedPassword = bcrypt.hashSync(password);
+      passwordString = `password : ${hashedPassword},`;
+    }
 
     try {
       user = await User.findByIdAndUpdate(userId, {
         name,
         email,
-        password: hashedPassword,
+        passwordString,
         profile_pic,
         user_title,
         bio,
@@ -124,6 +127,34 @@ class UserCotroller {
     }
 
     return res.status(200).json({ message: "user details has been updated!" });
+  };
+
+  static getUserData = async (req, res, next) => {
+    const token = req.headers.authorization;
+
+    if (!token) {
+      return res.status(401).json({ message: "No token provided" });
+    }
+
+    try {
+      const decodedToken = jwt.verify(token.split(" ")[1], "your_secret_key");
+
+      const userId = decodedToken.userId;
+
+      const user = await User.findById(userId);
+
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      const userDataToSend = { ...user._doc };
+      delete userDataToSend.password;
+
+      return res.status(200).json({ user: userDataToSend });
+    } catch (error) {
+      console.error(error); // Log the error for debugging
+      return res.status(401).json({ message: "Invalid token" });
+    }
   };
 }
 
