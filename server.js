@@ -1,17 +1,21 @@
 import express from "express";
-// import dbConnect from "./config/dbConfig.js";
+import dbConnect from "./config/dbConfig.js";
 import router from "./router/user-routes.js";
 import blog_router from "./router/blog-routes.js";
-import mongoose from "mongoose";
-import dotenv from 'dotenv';
-dotenv.config();
 
 import cors from "cors";
 // import YAML from "yamljs";
 // import swaggerUI from "swagger-ui-express";
 const app = express();
 app.use(express.json());
-app.use(cors());
+const corsConfig = {
+  origin: "*",
+  credential : true,
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"]
+}
+
+app.use(cors(corsConfig));
+app.options("", cors(corsConfig));
 app.use(express.urlencoded({ extended: true }));
 
 // const swaggerDocument = YAML.load("./swagger.yaml");
@@ -22,7 +26,7 @@ app.use("/api/users", router);
 app.use("/api/blogs", blog_router);
 
 app.get('/', (req, res) => {
-  res.send('🚀 Server is live!');
+  res.send('🚀 Server is running');
 });
 
 app.all('*', (req, res) => {
@@ -36,9 +40,5 @@ app.all('*', (req, res) => {
 const PORT = 3001;
 app.listen(process.env.PORT || PORT, () => {
   console.log(`🚀 Server is running on ${process.env.PORT || PORT}`);
-  mongoose.connect(`mongodb+srv://${process.env.MONGO_CRED}.mongodb.net/BLOG-API`).then(() => {
-    console.log('DB Connected :)')
-  }).catch((e) => {
-    console.log(e)
-  })
+  dbConnect();
 });
