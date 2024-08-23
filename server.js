@@ -1,7 +1,10 @@
 import express from "express";
-import dbConnect from "./config/dbConfig.js";
+// import dbConnect from "./config/dbConfig.js";
 import router from "./router/user-routes.js";
 import blog_router from "./router/blog-routes.js";
+import mongoose from "mongoose";
+import dotenv from 'dotenv';
+dotenv.config();
 
 import cors from "cors";
 // import YAML from "yamljs";
@@ -33,5 +36,9 @@ app.all('*', (req, res) => {
 const PORT = 3001;
 app.listen(process.env.PORT || PORT, () => {
   console.log(`🚀 Server is running on ${process.env.PORT || PORT}`);
-  dbConnect();
+  mongoose.connect(`mongodb+srv://${process.env.MONGO_CRED}.mongodb.net/BLOG-API`).then(() => {
+    console.log('DB Connected :)')
+  }).catch((e) => {
+    console.log(e)
+  })
 });
